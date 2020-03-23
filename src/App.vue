@@ -20,9 +20,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="css">
 @import 'assets/css/spacing.css';
-@import '~bulma/bulma.sass';
+@import '~bulma/css/bulma.css';
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
