@@ -1,3 +1,4 @@
+'use strict';
 const mongoose = require('mongoose');
 const Meetup = require('./models/meetups');
 const User = require('./models/users');
@@ -62,4 +63,4 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true })
     await db.seedDb();
     console.log('You can close connection now!')
   })
-  .catch(err => console.log(err));
+  .catch(err => console.log(err)); 
