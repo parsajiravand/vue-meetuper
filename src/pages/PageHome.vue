@@ -7,7 +7,9 @@
           <h1 class="title is-inline">Featured Meetups in "Location"</h1>
           <AppDropdown />
           <button class="button is-primary is-pulled-right m-r-sm">Create Meetups</button>
-          <button class="button is-primary is-pulled-right m-r-sm">All</button>
+          <button class="button is-primary is-pulled-right m-r-sm">
+            <router-link :to="{name:'PageFind'}" style="color:white">All</router-link>
+          </button>
         </div>
         <div class="row columns is-multiline">
           <!-- Iterate Your Meetups  -->
@@ -28,23 +30,20 @@
 </template>
 
 <script>
-import axios from "axios";
 import CategoryItem from "../components/shared/CategoryItem";
 import MeetUp from "../components/shared/MeetUp";
 export default {
-  data() {
-    return {
-      categories: [],
-      meetups: []
-    };
+  computed: {
+    meetups() {
+      return this.$store.state.meetups;
+    },
+    categories() {
+      return this.$store.state.categories;
+    }
   },
   created() {
-    axios.get("/api/v1/meetups").then(res => {
-      this.meetups = res.data;
-    });
-    axios.get("/api/v1/categories").then(res => {
-      this.categories = res.data;
-    });
+    this.$store.dispatch("fetchMeetups");
+    this.$store.dispatch("fetchCategories");
   },
   components: {
     CategoryItem,
